@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: medilab-dept-service-deployment
+  #namespace: medilab-app-ns
+  labels: 
+    app: medilab-app
+    env: dev
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medilab-dept-service-pods
+  template:
+    metadata: 
+      labels: 
+        app: medilab-dept-service-pods
+    spec:
+      containers:
+        - name: medilab-dept-service-container
+          image: ashokit/medilab-department-service
+          ports:
+            - containerPort: 9098
+          env:
+            - name: MEDILAB_DB_URL
+              value: jdbc:mysql://medilab-dept-db-service:3306/medilab-department-service
+            

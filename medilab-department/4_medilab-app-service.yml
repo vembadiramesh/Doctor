@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: medilab-dept-service
+  #namespace: medilab-app-ns
+spec: 
+ type: NodePort
+ ports:
+   - port: 9098
+     targetPort: 9098
+ selector:
+   app: medilab-dept-service-pods

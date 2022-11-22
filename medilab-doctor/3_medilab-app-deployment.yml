@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: medilab-doct-service-deployment
+  #namespace: medilab-app-ns
+  labels: 
+    app: medilab-app
+    env: dev
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medilab-doct-service-pods
+  template:
+    metadata: 
+      labels: 
+        app: medilab-doct-service-pods
+    spec:
+      containers:
+        - name: medilab-doct-service-container
+          image: ashokit/medilab-doctor-service
+          ports:
+            - containerPort: 9099
+          env:
+            - name: MEDILAB_DB_URL
+              value: jdbc:mysql://medilab-doctor-db-service:3306/medilab-doctor-service
+            

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medilab-doctor-db-deployment
+  #namespace: medilab-db-ns
+  labels:
+    type: db
+    env: dev
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: medilab-doctor-db-pods
+  template:
+    metadata:
+        labels: 
+          app: medilab-doctor-db-pods
+    spec:
+       containers:
+        - name: medilab-doctor-db-container
+          image: mysql
+          ports:
+            - containerPort: 3306          
+          env:
+            - name: MYSQL_DATABASE
+              value: medilab-doctor-service
+            #- name: MYSQL_USER
+             # value: root
+            - name: MYSQL_ROOT_PASSWORD
+              value: root              
+       restartPolicy: Always
+
+    
