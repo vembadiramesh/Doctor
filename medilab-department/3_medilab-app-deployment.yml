@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: medilab-dept-service-container
-          image: ashokit/medilab-department-service
+          image: ramesh2609/medilab-department-service
           ports:
             - containerPort: 9098
           env:
