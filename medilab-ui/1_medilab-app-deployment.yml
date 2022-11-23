@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: medilab-ui-container
-          image: ashokit/medilab-ui
+          image: ramesh2609/medilab-ui
           ports:
             - containerPort: 3000
             
